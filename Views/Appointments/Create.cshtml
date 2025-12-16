@@ -1,0 +1,45 @@
+﻿@model randevu_sistemi.Models.Appointment
+
+@{
+    ViewData["Title"] = "Yeni Randevu";
+}
+
+<h3>Yeni Randevu</h3>
+<hr />
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="DentistId" class="form-label">Doktor</label>
+        <select asp-for="DentistId" class="form-control" asp-items="ViewBag.DentistId"></select>
+        <span asp-validation-for="DentistId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PatientId" class="form-label">Hasta</label>
+        <select asp-for="PatientId" class="form-control" asp-items="ViewBag.PatientId"></select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DateTime" class="form-label">Tarih / Saat</label>
+        <input asp-for="DateTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Note" class="form-label">Not</label>
+        <textarea asp-for="Note" class="form-control"></textarea>
+        <span asp-validation-for="Note" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

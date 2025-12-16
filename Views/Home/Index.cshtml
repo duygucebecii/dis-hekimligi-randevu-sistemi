@@ -1,0 +1,58 @@
+﻿@model List<randevu_sistemi.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<h2>Diş Kliniği Randevu Paneli</h2>
+<hr />
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Doktor Sayısı</h5>
+                <p class="card-text display-6">@ViewBag.DentistCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Hasta Sayısı</h5>
+                <p class="card-text display-6">@ViewBag.PatientCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Randevu</h5>
+                <p class="card-text display-6">@ViewBag.AppointmentCount</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4>Yaklaşan Randevular</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tarih / Saat</th>
+            <th>Doktor</th>
+            <th>Hasta</th>
+            <th>Not</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@a.Dentist?.FullName</td>
+                <td>@a.Patient?.FullName</td>
+                <td>@a.Note</td>
+            </tr>
+        }
+    </tbody>
+</table>

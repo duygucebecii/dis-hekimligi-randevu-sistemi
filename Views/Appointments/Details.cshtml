@@ -1,0 +1,17 @@
+﻿@model randevu_sistemi.Models.Appointment
+
+@{
+    ViewData["Title"] = "Randevu Detayı";
+}
+
+<h3>Randevu Detayı</h3>
+<hr />
+
+<div class="card p-3">
+    <p><strong>Tarih/Saat:</strong> @Model.DateTime.ToString("dd.MM.yyyy HH:mm")</p>
+    <p><strong>Doktor:</strong> @Model.Dentist?.FullName</p>
+    <p><strong>Hasta:</strong> @Model.Patient?.FullName</p>
+    <p><strong>Not:</strong> @Model.Note</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Listeye Dön</a>

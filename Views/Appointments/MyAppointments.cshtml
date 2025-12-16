@@ -1,0 +1,37 @@
+﻿@model List<randevu_sistemi.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Benim Randevularım";
+}
+
+<h3>Benim Randevularım</h3>
+<hr />
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Kayıtlı randevunuz bulunmamaktadır.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tarih/Saat</th>
+                <th>Hasta</th>
+                <th>Not</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model)
+            {
+                <tr>
+                    <td>@a.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@a.Patient?.FullName</td>
+                    <td>@a.Note</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
